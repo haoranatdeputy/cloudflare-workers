@@ -1,14 +1,14 @@
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+  event.respondWith(handleRequest(event.request));
 })
 
-/**
+/*
  * Rewrites the request URL to match behaviour on Cloudfront
  * @param {Request} request
  */
 async function handleRequest(request) {
   //console.log('Got request', request)
-  console.log('Original Request URL: ', request.url)
+  console.log('Original Request URL: ', request.url);
 
   const alternate_url = request.url
     // -----------------------------
@@ -33,9 +33,9 @@ async function handleRequest(request) {
     .replace('https://wordpress-dev.deputec.com/author','http://wpblog_dev.deputec.com/author')
     .replace('https://wordpress-dev.deputec.com/press','http://wpblog_dev.deputec.com/press');
 
-  console.log('Updated Request URL: ', alternate_url)
+  console.log('Updated Request URL: ', alternate_url);
   
-  const response = await fetch(alternate_url, request)
+  const response = await fetch(alternate_url, request);
   //console.log('Got response from URL: ', response)
-  return response
+  return response;
 }
